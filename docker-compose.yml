@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  sentinel:
+    build: .
+    image: qubic-sentinel-lite:latest
+    container_name: qubic-sentinel-lite
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"

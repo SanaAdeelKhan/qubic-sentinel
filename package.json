@@ -1,0 +1,31 @@
+{
+  "name": "qubic-sentinel-lite",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "private": true,
+  "scripts": {
+    "start": "node src/server/index.js",
+    "dev": "nodemon src/server/index.js",
+    "lint": "echo \"Add lint step\"",
+    "test": "echo \"No tests yet\"",
+    "docker:build": "docker build -t qubic-sentinel-lite:latest ."
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "body-parser": "^1.20.4",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.0",
+    "winston": "^3.18.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "description": "Real-time whale & token alerting with EasyConnect integrations — a 24-hour MVP for the Qubic Hackathon (Track 2).",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

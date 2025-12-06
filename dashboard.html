@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><title>Qubic Sentinel Dashboard</title></head>
+<body>
+  <h1>🦈 Qubic Whale Alerts (LIVE)</h1>
+  <button onclick="testWebhook()">Test Discord</button>
+  <button onclick="fetchAlerts()">Refresh Alerts</button>
+  <div id="alerts"></div>
+
+  <script>
+    async function fetchAlerts() {
+      const res = await fetch('/api/alerts/recent');
+      const alerts = await res.json();
+      document.getElementById('alerts').innerHTML = 
+        alerts.map(a => `<div style="border:1px solid #ccc; margin:5px; padding:10px;">
+          <b>${a.amount} QU</b> ${a.from} → ${a.to} 
+          <small>(${a.tick})</small>
+        </div>`).join('');
+    }
+    async function testWebhook() {
+      await fetch('/api/webhook/test');
+      alert('Discord ping sent!');
+    }
+    fetchAlerts();
+    setInterval(fetchAlerts, 5000);
+  </script>
+</body>
+</html>

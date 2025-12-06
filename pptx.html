@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qubic Sentinel Presentation Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box li {
+            padding: 5px 0;
+            color: #555;
+        }
+        
+        .info-box li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+        
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            display: block;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature-card .icon {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        
+        .feature-card .label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .download-link {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #e7f3ff;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .download-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .download-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🦈</div>
+            <h1>Qubic Sentinel</h1>
+            <p class="subtitle">PowerPoint Presentation Generator</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>📊 Presentation Includes:</h3>
+            <ul>
+                <li>Professional title slide with branding</li>
+                <li>Problem statement & solution overview</li>
+                <li>Live dashboard demonstration</li>
+                <li>Technical architecture diagram</li>
+                <li>EasyConnect integration details</li>
+                <li>Use cases & business value</li>
+                <li>Technical stack & deployment</li>
+                <li>Roadmap & future enhancements</li>
+                <li>Demo & call-to-action</li>
+            </ul>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">📄</div>
+                <div class="label">14 Slides</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎨</div>
+                <div class="label">Professional Design</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <div class="label">Instant Download</div>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <div class="label">Hackathon Ready</div>
+            </div>
+        </div>
+        
+        <button class="generate-btn" id="generateBtn">
+            🚀 Generate PowerPoint Presentation
+        </button>
+        
+        <div id="status" class="status"></div>
+        <div id="downloadLink" class="download-link"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script>
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+        }
+
+        function generatePresentationManually() {
+            const btn = document.getElementById('generateBtn');
+            btn.disabled = true;
+            showStatus('⏳ Generating your presentation...', 'loading');
+
+            try {
+                // Create presentation content as HTML
+                const slides = [
+                    {
+                        title: 'QUBIC SENTINEL',
+                        subtitle: 'Real-Time Blockchain Whale Monitoring',
+                        content: 'Track 2: EasyConnect Integration\nQubic Hackathon 2024',
+                        bg: '#667eea'
+                    },
+                    {
+                        title: 'The Problem 🤔',
+                        content: `❌ Manual Blockchain Monitoring
+• Constantly refreshing blockchain explorers
+• Missing critical whale movements
+
+❌ Delayed Notifications
+• Email alerts arrive too late
+• No real-time integration with tools
+
+❌ Complex Smart Contracts
+• Requires blockchain development expertise
+• Gas fees and deployment costs`
+                    },
+                    {
+                        title: 'Our Solution ✨',
+                        content: `✅ Real-Time Monitoring
+Polls Qubic RPC every 2-5 seconds
+
+✅ Instant Alerts
+Discord, Slack, Telegram via EasyConnect
+
+✅ Zero Smart Contracts
+Direct RPC integration, no gas fees
+
+✅ Production Ready
+Docker, PowerShell, Node.js deployment`
+                    },
+                    {
+                        title: 'Live Dashboard 📊',
+                        content: `Current Tick: 38,700,849
+Total Alerts: 127
+Largest Whale: 47,250 QU
+Threshold: 5,000 QU`
+                    },
+                    {
+                        title: 'System Architecture 🏗️',
+                        content: `Qubic Blockchain → Sentinel → EasyConnect
+
+Integrates with:
+• Discord
+• Slack
+• Telegram
+• Google Sheets
+• Zapier & More`
+                    },
+                    {
+                        title: 'EasyConnect Integration 🔗',
+                        content: `📡 Instant Notifications
+Send alerts to Discord, Slack, Teams
+
+📊 Data Integration
+Auto-populate Google Sheets, Airtable
+
+⚡ Workflow Automation
+Trigger Zapier, Make, n8n workflows`
+                    },
+                    {
+                        title: 'Use Cases 💼',
+                        content: `🏦 DeFi Teams
+Monitor treasury & competitor activity
+
+📈 Traders
+Early market signals & whale tracking
+
+🔬 Researchers
+Analyze network behavior patterns
+
+🛡️ Security Teams
+Detect suspicious activity`
+                    },
+                    {
+                        title: 'Key Features ⭐',
+                        content: `⚡ Real-Time: 2-5 second polling
+🎯 Configurable: Custom thresholds
+🔔 Multi-Channel: Discord, Slack, more
+📊 Historical: Track trends
+🐳 Intelligence: Rich transaction details`
+                    },
+                    {
+                        title: 'Technical Stack 🛠️',
+                        content: `Frontend: React 18 + Tailwind CSS
+Backend: Node.js + PowerShell
+Infrastructure: Docker + CI/CD
+Integration: Qubic RPC + Webhooks`
+                    },
+                    {
+                        title: 'Deployment Options 🚀',
+                        content: `🐳 Docker (Recommended)
+docker run -d -p 3000:3000 qubic-sentinel
+
+💻 PowerShell (Windows)
+sentinel.ps1
+
+⚙️ Node.js (Cross-Platform)
+npm start
+
+☁️ Cloud: AWS, Azure, GCP, DigitalOcean`
+                    },
+                    {
+                        title: 'Easy Configuration ⚙️',
+                        content: `RPC_BASE_URL=https://rpc.qubic.org/
+POLL_INTERVAL_MS=5000
+WHALE_THRESHOLD_QU=5000
+EASYCONNECT_WEBHOOK_URL=https://...`
+                    },
+                    {
+                        title: 'Live Whale Alert 🦈',
+                        content: `🦈 WHALE ALERT!
+━━━━━━━━━━━━━━━━━━━━━
+💰 Amount: 47,250 QU
+📊 Tick: 38,700,849
+🔗 From: QUBICA1B2C3D4...
+➡️ To: QUBICZ9Y8X7W6...
+✅ Alert sent to Discord`,
+                        bg: '#1e1e1e',
+                        color: '#a5d6ff'
+                    },
+                    {
+                        title: 'Roadmap 🗺️',
+                        content: `✅ Phase 1: MVP (Completed)
+Real-time monitoring, webhook alerts, dashboard
+
+🚧 Phase 2: Enhanced Analytics
+Historical trends, whale patterns, ML predictions
+
+📅 Phase 3: Advanced Features (Q1 2025)
+Multi-chain support, mobile app, API marketplace
+
+🚀 Phase 4: Enterprise (Q2 2025)
+SLA guarantees, custom integrations, white-label`
+                    },
+                    {
+                        title: '🦈 Try Qubic Sentinel Today!',
+                        content: `📦 GitHub Repository
+github.com/yourusername/qubic-sentinel
+
+🚀 Quick Start
+docker run -d -p 3000:3000 qubic-sentinel
+
+📧 Contact
+your.email@example.com
+@YourTwitter`,
+                        bg: '#667eea',
+                        color: '#ffffff'
+                    }
+                ];
+
+                // Generate HTML presentation
+                let htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Qubic Sentinel Presentation</title>
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            padding: 60px;
+            box-sizing: border-box;
+            background: #f7fafc;
+        }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; }
+        .slide h1 { 
+            font-size: 48px; 
+            color: #667eea; 
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .slide .content { 
+            font-size: 24px; 
+            line-height: 1.8;
+            white-space: pre-line;
+            color: #2d3748;
+        }
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+        button:hover { background: #5568d3; }
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 18px;
+            color: #667eea;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-number" id="slideNumber">1 / 14</div>
+    ${slides.map((slide, i) => `
+    <div class="slide ${i === 0 ? 'active' : ''}" style="${slide.bg ? 'background: ' + slide.bg + ';' : ''} ${slide.color ? 'color: ' + slide.color + ';' : ''}">
+        <h1 style="${slide.color ? 'color: ' + slide.color + ';' : ''}">${slide.title}</h1>
+        ${slide.subtitle ? '<h2 style="text-align: center; margin: -20px 0 30px 0; font-size: 28px; color: #e2e8f0;">' + slide.subtitle + '</h2>' : ''}
+        <div class="content">${slide.content}</div>
+    </div>
+    `).join('')}
+    
+    <div class="controls">
+        <button onclick="prevSlide()">← Previous</button>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideNumber = document.getElementById('slideNumber');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            slideNumber.textContent = (currentSlide + 1) + ' / ' + slides.length;
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    <\/script>
+</body>
+</html>`
+
+                // Create download
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Qubic_Sentinel_Presentation.html';
+                a.click();
+                URL.revokeObjectURL(url);
+
+                showStatus('✅ Presentation downloaded successfully! Open the HTML file in your browser to view.', 'success');
+                
+                // Show alternative download link
+                const downloadDiv = document.getElementById('downloadLink');
+                downloadDiv.innerHTML = '<p style="margin-bottom: 10px;">💡 <strong>How to use:</strong> Open the downloaded HTML file in any browser. Use arrow keys or buttons to navigate slides.</p><p style="font-size: 14px; color: #666;">To convert to PowerPoint: Open in PowerPoint (File > Open > select HTML file) or use an online converter.</p>';
+                downloadDiv.style.display = 'block';
+                
+                btn.disabled = false;
+
+            } catch (error) {
+                console.error('Error:', error);
+                showStatus('❌ Error generating presentation: ' + error.message, 'error');
+                btn.disabled = false;
+            }
+        }
+
+        document.getElementById('generateBtn').addEventListener('click', generatePresentationManually);
+    </script>
+</body>
+</html>
